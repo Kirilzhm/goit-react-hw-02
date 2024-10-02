@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import Feedback from './components/Feedback';
 import Options from './components/Options';
 import Notification from './components/Notification';
+import Description from './components/Description';
 
 const App = () => {
   const [feedback, setFeedback] = useState(() => {
@@ -19,7 +20,7 @@ const App = () => {
 
   useEffect(() => {
     window.localStorage.setItem("saved-feedback", JSON.stringify(feedback))
-  })
+  }, [feedback]);
 
   const updateFeedback = (feedbackType) => {
     setFeedback({
@@ -42,8 +43,7 @@ const App = () => {
 
   return (
     <div>
-      <h1>Sip Happens Café</h1>
-      <p>Please leave your feedback about our service by selecting one of the options below.</p>
+      <Description/>
       <Options 
         updateFeedback={updateFeedback} 
         resetFeedback={resetFeedback} 
